@@ -1,4 +1,5 @@
-# Management System
+# Client Management System
+고객관리시스템 화면 프로젝트 입니다.
 
 ## Available Scripts
 
