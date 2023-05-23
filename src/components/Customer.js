@@ -4,9 +4,9 @@ class Customer extends React.Component {
     render() {
         return (
             <div>
-                <CustomerProfile id={this.id} immage={this.immage} name={this.name} />
+                <CustomerProfile id={this.id} image={this.image} name={this.name} />
                 <CustomerInfo birthday={this.birthday} gender={this.gender} job={this.job} />
-            </div >
+            </div>
         );
     }
 }
@@ -15,7 +15,7 @@ class CustomerProfile extends React.Component {
     render() {
         return (
             <div>
-                <img src={this.props.immage} alt="profile" />
+                <img src={this.props.image} alt="profile" />
                 <h2>{this.props.name}({this.props.id})</h2>
             </div>
         );
