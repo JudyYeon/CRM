@@ -48,6 +48,26 @@ const customers = [{
 }];
 
 
+/**
+ * <React LifeCycle>
+ * 
+ * 1) constructor()
+ * 
+ * 2) componentWillMount()
+ * 
+ * 3) render()
+ * 
+ * 4) componentDidMount()
+ * 
+ */
+
+
+/**
+ * props or state => shouldComponentUpdate()
+ * 
+ */
+
+
 class App extends Component {
 
   state = {
