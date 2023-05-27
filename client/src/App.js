@@ -20,7 +20,7 @@ const styles = theme => ({
   table: {
     minWidth: 1080
   }
-})
+});
 
 const customers = [{
   'id': 1,
@@ -45,10 +45,33 @@ const customers = [{
   'birthday': '900125',
   'gender': '남자',
   'job': '가수'
-}]
+}];
 
 
 class App extends Component {
+
+  state = {
+    customers: ""
+  };
+
+  // 모든 컴포넌트가 마운트 된 후 로드
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ customers: res }))
+      .catch(err => console.log(err));
+  };
+
+
+
+  callApi = async () => {
+    const response = await fetch('/api/customers');
+    const body = await response.json();
+    return body;
+  };
+
+
+
+
   render() {
     const { classes } = this.props;
     return (
@@ -65,23 +88,15 @@ class App extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {
-              customers.map(c => {
-                return (
-                  <Customer
-                    key={c.id}
-                    id={c.id}
-                    image={c.image}
-                    name={c.name}
-                    birthday={c.birthday}
-                    gender={c.gender}
-                    job={c.job}
-
-                  />
-                );
-
-              })
-            }
+            {this.state.customers ? this.state.customers.map(c => {
+              return (<Customer key={c.id}
+                id={c.id}
+                image={c.image}
+                name={c.name}
+                birthday={c.birthday}
+                gender={c.gender}
+                job={c.job} />);
+            }) : ""}
           </TableBody>
         </Table>
 
