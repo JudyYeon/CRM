@@ -7,6 +7,7 @@ import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import CircularProgress from '@mui/material/CircularProgress';
 import { withStyles } from '@mui/styles';
 import Paper from '@mui/material/Paper';
 
@@ -19,7 +20,10 @@ const styles = theme => ({
   },
   table: {
     minWidth: 1080
-  }
+  },
+  // progress: {
+  //   margin: theme.spacing * 2
+  // }
 });
 
 const customers = [{
@@ -71,11 +75,13 @@ const customers = [{
 class App extends Component {
 
   state = {
-    customers: ""
+    customers: "",
+    completed: 0
   };
 
   // 모든 컴포넌트가 마운트 된 후 로드
   componentDidMount() {
+    this.timer = setInterval(this.progress, 20);  //2초마다 실행되도록
     this.callApi()
       .then(res => this.setState({ customers: res }))
       .catch(err => console.log(err));
@@ -90,6 +96,11 @@ class App extends Component {
   };
 
 
+  // 프로그래스바
+  progress = () => {
+    const { completed } = this.state;
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 })
+  }
 
 
   render() {
@@ -116,11 +127,18 @@ class App extends Component {
                 birthday={c.birthday}
                 gender={c.gender}
                 job={c.job} />);
-            }) : ""}
+            }) :
+              <TableRow>
+                <TableCell colSpan="6" align="center">
+                  <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />
+                </TableCell>
+
+              </TableRow>
+            }
           </TableBody>
         </Table>
 
-      </Paper>
+      </Paper >
     );
   }
 }
