@@ -10,20 +10,22 @@ import TableRow from '@mui/material/TableRow';
 import CircularProgress from '@mui/material/CircularProgress';
 import { withStyles } from '@mui/styles';
 import Paper from '@mui/material/Paper';
+import { createTheme } from '@mui/material';
 
 
 const styles = theme => ({
   root: {
     width: '100%',
-    // marginTop: theme.spacing.unit * 3,
+    marginTop: createTheme().spacing(3),  //material UI v5. migration
     overflowX: "auto"
   },
   table: {
     minWidth: 1080
   },
-  // progress: {
-  //   margin: theme.spacing * 2
-  // }
+  progress: {
+    margin: createTheme().spacing(2),
+
+  }
 });
 
 const customers = [{
@@ -99,7 +101,7 @@ class App extends Component {
   // 프로그래스바
   progress = () => {
     const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1 })
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
   }
 
 
@@ -130,9 +132,8 @@ class App extends Component {
             }) :
               <TableRow>
                 <TableCell colSpan="6" align="center">
-                  <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />
+                  <CircularProgress className={classes.progress} variant="indeterminate" value={this.state.completed} />
                 </TableCell>
-
               </TableRow>
             }
           </TableBody>
