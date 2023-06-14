@@ -1,5 +1,5 @@
 # Client Management System
-고객관리시스템 입니다.
+React와 Node.js를 활용한 고객관리시스템 입니다.
 
 ## Available Scripts
 
