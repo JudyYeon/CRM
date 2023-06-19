@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     host:conf.host,
 //     user:conf.user,
 //     password:conf.password,
-//     port:conf.port,
+//     port:conf.port,         
 //     database:conf.database
 // });
 // connection.connection();
