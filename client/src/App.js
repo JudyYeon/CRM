@@ -142,7 +142,7 @@ class App extends Component {
           </Table>
         </Paper >
 
-        <CustomerAdd />
+        {/* <CustomerAdd /> */}
       </div>
     );
   }
